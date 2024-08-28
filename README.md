@@ -4,6 +4,8 @@
 
 The main objective of the mathworks minidrone competition was to develop an image processing and a path planning algorithm that would enable the drone to autonomously follow the path on the ground. The controller and the dynamics of the drone was to be kept as it is for implementation of the algorithms on real hardware (Parrot Mambo QuadCopter) . 
 
+![bharath-directory-news-20-1720432177](https://github.com/user-attachments/assets/cc15a78f-259f-4b11-bd5d-6fc8ed35a520)
+
 # Description 
 
 The control system architecture of the Parrot Mambo drone, designed for autonomous path following, is a complex and highly integrated system that combines advanced image processing, path planning, and control mechanisms to enable precise and reliable navigation. This drone, equipped with four brushless DC motors, is specifically engineered to autonomously follow a predetermined path marked by distinct colors, with red representing the path and blue representing the surroundings. The architecture ensures that the drone can successfully navigate through this environment, which includes multiple sharp turns, and ultimately land on a designated target area.
