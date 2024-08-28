@@ -40,6 +40,15 @@ The final step in the image processing algorithm is determining the drone’s wa
 ### 4. Final Error Calculation :
 The waypoint for the next timestep of the drone for path planning is calculated using the average of the coordinates of all the white pixels (pixels carrying the value 1) .The Averaged coordinates of the waypoint is then subtracted from the coordinates of the centre of the frame (the position of the drone ) to output the the values of error in x and y coordinates , that is the difference in the x and y coordinates between the current posistion and the next waypoint. This output of error_x and error_y is further given to the image processing sub-system. 
 
+# Path Planning Algorithm 
+
+The Path Planning algorithm followed for this application is the pure-pursuit algotrithm. The pure pursuit algorithm is well-established method in robotics and autonomous systems for path tracking, and it is particularly effective in the path planning of mini drones. This algorithm operates by continuously steering the drone toward a "look-ahead" point on a predefined path. The idea is simple: the drone calculates a circular path that intersects its current position and the look-ahead point. By steering toward this point, the drone follows the path with smooth and gradual movements, making it ideal for navigating tight and complex environments. 
+
+The pure pursuit algorithm ensures that the drone can follow a path with sharp turns and dynamic changes in direction without losing stability. The algorithm adjusts the drone's heading by calculating the curvature needed to reach the look-ahead point, and this is continually updated as the drone moves along the path. This approach minimizes errors and reduces the likelihood of overshooting or cutting corners, which is crucial for small drones that operate in confined spaces. 
+
+The simplicity and robustness of the pure pursuit algorithm make it particularly suitable for real-time applications where computational resources are limited. For the Parrot Mambo, which has four brushless DC motors providing precise control, the pure pursuit algorithm allows for efficient and responsive path planning, enabling the drone to navigate through complex environments while maintaining a steady and predictable flight path.
+
+The Pure Planning algorithm was inspired from this conference paper. 
 
 
 
