@@ -57,7 +57,7 @@ The simplicity and robustness of the pure pursuit algorithm make it particularly
 The Pure Planning algorithm was inspired from this conference paper. 
 
 
-References: 
+# References: 
 
 1. [A Vision-Based Algorithm for a Path Following Problem](https://www.researchgate.net/publication/351443447_A_Vision-Based_Algorithm_for_a_Path_Following_Problem)
 
