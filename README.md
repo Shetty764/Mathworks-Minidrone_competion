@@ -21,7 +21,7 @@ After the path planning algorithm has determined the optimal trajectory, the con
 The final phase of the drone’s operation is landing, which is also managed by the control system. As the drone approaches the end of the path, the image processing and path planning algorithms continue to provide real-time data to ensure a smooth and precise landing. The control system gradually reduces the drone’s altitude while aligning it with the target landing area, making any necessary adjustments to account for wind or other environmental factors.
 
 
-The image processing and the path planning algorithm is explained in detail : 
+The image processing and the path planning algorithm is explained in detail . The image processing and the path planning algorithm is re-implemented from the conference paper using individual Simulink Blocks .
 
 # Image Processing Algorithm 
 ![Screenshot 2024-08-28 185115](https://github.com/user-attachments/assets/51d18626-7d74-487c-8e90-d8a2cc480730)
@@ -30,6 +30,8 @@ The image processing algorithm was carried in a number of steps :
 ### 1. Image Segmentation Using Color Thresholder App
 
 Image segmentation is a crucial initial step in processing the visual data from the Parrot Mambo drone’s camera. The Color Thresholder app in MATLAB is employed for this purpose, enabling the separation of specific colors from the image, which is essential for identifying the path and surroundings. The drone’s environment is typically designed with distinct color patterns, where the path might be red and the surroundings blue. Using the Color Thresholder app, the algorithm applies threshold values to the color channels (Red, Green, and Blue) to isolate the path from the background. This segmentation process converts the RGB image into a binary image, where the path is highlighted as white (value 1) and the surroundings as black (value 0). This clear distinction simplifies the subsequent processing steps by focusing only on the relevant areas of the image. Segmentation not only reduces the computational complexity but also enhances the accuracy of the drone’s path-following capability. By isolating the path, the drone can reliably identify the direction it needs to follow, even in the presence of noise or varying lighting conditions. This step ensures that the image data is pre-processed effectively, providing a clean input for further analysis like circle detection and waypoint calculation.
+
+![image_binarization](https://github.com/user-attachments/assets/b85a0272-e138-4810-8bce-00a937fbfe11)
 
 ### 2. Using Hough Transform for Circle Detection :
 
@@ -54,6 +56,10 @@ The simplicity and robustness of the pure pursuit algorithm make it particularly
 
 The Pure Planning algorithm was inspired from this conference paper. 
 
+
+References: 
+
+1. [A Vision-Based Algorithm for a Path Following Problem](https://www.researchgate.net/publication/351443447_A_Vision-Based_Algorithm_for_a_Path_Following_Problem)
 
 
 
