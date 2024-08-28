@@ -23,3 +23,26 @@ The image processing and the path planning algorithm is explained in detail :
 
 # Image Processing Algorithm 
 
+The image processing algorithm was carried in a number of steps : 
+### 1. Image Segmentation Using Color Thresholder App
+
+Image segmentation is a crucial initial step in processing the visual data from the Parrot Mambo drone’s camera. The Color Thresholder app in MATLAB is employed for this purpose, enabling the separation of specific colors from the image, which is essential for identifying the path and surroundings. The drone’s environment is typically designed with distinct color patterns, where the path might be red and the surroundings blue. Using the Color Thresholder app, the algorithm applies threshold values to the color channels (Red, Green, and Blue) to isolate the path from the background. This segmentation process converts the RGB image into a binary image, where the path is highlighted as white (value 1) and the surroundings as black (value 0). This clear distinction simplifies the subsequent processing steps by focusing only on the relevant areas of the image. Segmentation not only reduces the computational complexity but also enhances the accuracy of the drone’s path-following capability. By isolating the path, the drone can reliably identify the direction it needs to follow, even in the presence of noise or varying lighting conditions. This step ensures that the image data is pre-processed effectively, providing a clean input for further analysis like circle detection and waypoint calculation.
+
+### 2. Using Hough Transform for Circle Detection :
+
+After segmenting the image, the next step in the algorithm involves detecting specific geometric shapes, particularly circles, which represent the starting and landing points in the drone’s path. The Hough Transform is a robust technique used for this purpose. This transform maps points in the image space to a parameter space where potential circles can be identified based on the accumulation of evidence for circular shapes. In the context of the Parrot Mambo drone, the Hough Transform is applied to the binary image produced from the segmentation step. It identifies circles by searching for points in the image that satisfy the equation of a circle, allowing for the detection of the circular regions that signify the start and end of the drone’s path. The accuracy of the Hough Transform is critical because the detected circles guide the drone’s takeoff and landing. Misidentification could lead to erroneous positioning and affect the overall mission. By detecting the circles, the algorithm marks the critical points, ensuring that the drone knows precisely where to begin its journey and where to land, thereby improving the reliability and safety of its operations.
+
+### 3. The Use of Field of View Mask and Annular Ring for Getting Waypoints : 
+
+The final step in the image processing algorithm is determining the drone’s waypoints, which are essential for navigating the path accurately. This is achieved by combining a field of view (FOV) mask with an annular ring. The FOV mask is used to limit the area of interest to the region directly ahead of the drone, simulating the drone’s forward-looking perspective. This mask ensures that the algorithm focuses only on the relevant part of the image, disregarding any distractions outside the drone’s immediate path. The annular ring is a circular area within this FOV, defined by an inner and outer radius. It intersects with the segmented path, allowing the algorithm to identify points along the path that lie within this ring. These points are averaged to determine the next waypoint. The waypoint guides the drone’s movement by providing a target location within its current field of view. This approach ensures that the drone remains on course, adjusting its trajectory as it encounters curves or turns in the path. By using the FOV mask and annular ring together, the algorithm effectively narrows down the possible waypoints to those that are most relevant, ensuring smooth and accurate navigation throughout the flight. This step is crucial for maintaining the drone's alignment with the path and achieving precise control over its movements.
+
+
+### 4. Final Error Calculation :
+The waypoint for the next timestep of the drone for path planning is calculated using the average of the coordinates of all the white pixels (pixels carrying the value 1) .The Averaged coordinates of the waypoint is then subtracted from the coordinates of the centre of the frame (the position of the drone ) to output the the values of error in x and y coordinates , that is the difference in the x and y coordinates between the current posistion and the next waypoint. This output of error_x and error_y is further given to the image processing sub-system. 
+
+
+
+
+
+
+ 
